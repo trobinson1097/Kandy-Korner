@@ -6,7 +6,7 @@ import { ProductList } from "../products/products"
 import { ProductSearch } from "../products/productSearch"
 
 export const ApplicationViews = () => {
-	return (
+    return (
         <Routes>
             <Route path="/" element={
                 <>
@@ -18,19 +18,19 @@ export const ApplicationViews = () => {
                     <Outlet />
                 </>
             }>
-                
-                <Route path="locations" element={ < LocationList /> } />
 
-                <Route path="products" element={ 
-                
-                <ProductContainer />
+                <Route path="locations" element={< LocationList />} />
 
-                }/>
+                <Route path="products" element={
 
-                <Route path="/products/productForm" element={ < ProductForm /> } />
+                    <ProductContainer />
+
+                } />
+
+                <Route path="/products/productForm" element={< ProductForm />} />
 
             </Route>
-            
+
         </Routes>
     )
 }

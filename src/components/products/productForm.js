@@ -7,7 +7,7 @@ export const ProductForm = () => {
         TODO: Add the correct default properties to the
         initial state object
     */
-    const [ productTypes, setTypes ] = useState([])
+    const [productTypes, setTypes] = useState([])
     const [product, update] = useState({
         name: "",
         price: 0,
@@ -18,36 +18,36 @@ export const ProductForm = () => {
         the user to the ticket list
     */
 
-            useEffect(
-                () => {
-                    //console.log("Initial state of Locations", tickets) // View the initial state of tickets
-                    fetch(`http://localhost:8088/productTypes`)
-                        .then(response => response.json())
-                        .then((ProductTypeArray) => {
-                            setTypes(ProductTypeArray)
-                        })
-                },
-                [] // When this array is empty, you are observing initial component state
-            )
+    useEffect(
+        () => {
+            //console.log("Initial state of Locations", tickets) // View the initial state of tickets
+            fetch(`http://localhost:8088/productTypes`)
+                .then(response => response.json())
+                .then((ProductTypeArray) => {
+                    setTypes(ProductTypeArray)
+                })
+        },
+        [] // When this array is empty, you are observing initial component state
+    )
 
 
 
     const navigate = useNavigate()
     const kandyUser = localStorage.getItem("Kandy_user")
-    const kandyUserObject = JSON.parse (kandyUser)
+    const kandyUserObject = JSON.parse(kandyUser)
 
     const handleSaveButtonClick = (event) => {
         event.preventDefault()
 
         // TODO: Create the object to be saved to the API
-    /*
-    {
-    "userId": 3,
-    "description": "",
-    "emergency": true,
-    "dateCompleted": ""
-    }
-*/
+        /*
+        {
+        "userId": 3,
+        "description": "",
+        "emergency": true,
+        "dateCompleted": ""
+        }
+    */
         const productToSendToApi = {
             name: product.name,
             price: product.price,
@@ -55,17 +55,17 @@ export const ProductForm = () => {
 
         }
         // TODO: Perform the fetch() to POST the object to the API
-        return fetch (`http://localhost:8088/products`, {
+        return fetch(`http://localhost:8088/products`, {
             method: "POST",
             headers: {
                 "content-Type": "application/json"
             },
             body: JSON.stringify(productToSendToApi)
         })
-        .then(response => response.json()) 
-        .then(() => {
-            navigate("/products")
-        })
+            .then(response => response.json())
+            .then(() => {
+                navigate("/products")
+            })
     }
 
     return (
@@ -119,15 +119,15 @@ export const ProductForm = () => {
                                 required autoFocus
                                 onChange={
                                     (changeEvent) => {
-                                    const copy = { ...product }
-                                    copy.productTypeId = parseInt(changeEvent.target.value)
-                                    update(copy);
-                                }}
+                                        const copy = { ...product }
+                                        copy.productTypeId = parseInt(changeEvent.target.value)
+                                        update(copy);
+                                    }}
                                 type="radio"
                                 name="productType"
                                 value={type.id}
                             /> {" "}
-                                {type.name}
+                            {type.name}
                         </div>
                     )
                 })}
@@ -135,10 +135,10 @@ export const ProductForm = () => {
 
 
 
-            
 
-                        
-            
+
+
+
             <button
                 onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
                 className="btn btn-primary">
